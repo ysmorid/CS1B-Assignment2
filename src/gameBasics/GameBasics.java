@@ -52,7 +52,10 @@ public class GameBasics {
          }
       }
       
-      Deck deck = new Deck(2);
+      Deck deck = new Deck();
+      deck.display();
+      deck.shuffle();
+      System.out.println();
       deck.display();
       
    }

@@ -77,6 +77,15 @@ public class Deck {
       }
    }
    
+   public void shuffle(){
+      for(int i = 0; i < topCard; i++){
+         int random = (int)(Math.random() * topCard);
+         Card temp = cards[random];
+         cards[random] = cards[i];
+         cards[i] = temp;
+      }
+   }
+   
    public Card dealCard(){
       topCard--;
       return cards[topCard];
@@ -97,8 +106,9 @@ public class Deck {
    
    public void display(){
       for (int i = 0; i < cards.length; i++){
-         System.out.println(cards[i].toString());
+         System.out.print(cards[i].toString() + " // ");
       }
+      System.out.println();
    }
    
 }
