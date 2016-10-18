@@ -51,6 +51,9 @@ public class GameBasics {
             System.out.println("Playing " + hand1.playCard().toString());
          }
       }
+      
+      Deck deck = new Deck();
+      deck.display();
+      
    }
-
 }

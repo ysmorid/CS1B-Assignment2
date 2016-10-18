@@ -57,4 +57,10 @@ public class Deck {
       }
    }
    
+   public void display(){
+      for (int i = 0; i < masterPack.length; i++){
+         System.out.println(masterPack[i].toString());
+      }
+   }
+   
 }
