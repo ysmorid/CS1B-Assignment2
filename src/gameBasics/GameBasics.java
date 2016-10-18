@@ -1,62 +1,49 @@
 package gameBasics;
 
+import java.util.*;
+
 public class GameBasics {
 
    public static void main(String[] args) {
 
-      //Test Card Class
-      Card card1 = new Card();
-      Card card2 = new Card('p', Card.Suit.DIAMONDS);
-      Card card3 = new Card('j', Card.Suit.CLUBS);
+      Deck deck1 = new Deck(2);
+      Deck deck2 = new Deck(2);
+      Deck deck3 = new Deck();
+      Deck deck4;
+      Hand hands;
       
-      System.out.println(card1.toString());
-      System.out.println(card2.toString());
-      System.out.println(card3.toString());
-      System.out.println("");
+      int userInput = 0;
       
-      card1.setCard('1', Card.Suit.HEARTS);
-      card2.setCard('Q', Card.Suit.SPADES);
+      deck1.display();
+      System.out.println();
       
-      System.out.println(card1.toString());
-      System.out.println(card2.toString());
-      System.out.println(card3.toString());
-      System.out.println("");
-
-      //Test Hand Class
-      Hand hand1 = new Hand();
-      Card card4 = new Card();
+      deck2.shuffle();
+      deck2.display();
+      System.out.println();
       
-      while(hand1.takeCard(card2) && hand1.takeCard(card3) && hand1.takeCard(card4) ){
-      }
+      deck3.display();
+      System.out.println();
       
-      System.out.println("Hand: " + hand1.toString()); 
-      System.out.println("");
+      deck3.shuffle();
+      deck3.display();
       
-      //Testing Inspect Card
-      System.out.println("The card in position 5 is " + hand1.inspectCard(5).toString());
-      System.out.println("The card in position 55 is " + hand1.inspectCard(55).toString());
-      System.out.println("");
+      System.out.println("------------------RUN 2----------------");
       
-      //Playing the Hand
-      System.out.println("Playing the Hand:");
-      for(int i = hand1.getNumCards()-1; i >= 0; i--){
-         if(i == 0){
-            System.out.println("Playing " + hand1.playCard().toString());
-            hand1.resetHand();
-            System.out.println("");
-            System.out.println("Hand Empty");
-            System.out.println("Hand: (" + hand1.toString() + " )"); 
+      Scanner keyboard = new Scanner(System.in);
+      boolean test = false;
+      
+      while(!test){
+         System.out.println("How many hands would you like to play? You can choose"
+               + " between 1 - 10:");
+         userInput = keyboard.nextInt();
+         
+         if(userInput < 1 || userInput > 10){
+            System.out.println("I'm sorry, that is not a valid amount. Please try again.");
          }
          else{
-            System.out.println("Playing " + hand1.playCard().toString());
-         }
+            test = true;
+            keyboard.close();
+         }   
       }
-      
-      Deck deck = new Deck();
-      deck.display();
-      deck.shuffle();
-      System.out.println();
-      deck.display();
-      
    }
 }
