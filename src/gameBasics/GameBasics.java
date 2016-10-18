@@ -52,7 +52,7 @@ public class GameBasics {
          }
       }
       
-      Deck deck = new Deck();
+      Deck deck = new Deck(2);
       deck.display();
       
    }

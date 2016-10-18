@@ -4,17 +4,24 @@ import gameBasics.Card.Suit;
 
 public class Deck {
    public final int MAX_CARDS = 312;
-   private static Card[] masterPack = new Card[52];
+   private static Card[] masterPack;
    private Card[] cards;
    private int topCard;
    private int numPacks;
 
    Deck(){ 
-      allocateMasterPack();
-       }
+      this(1);
+   }
    
    Deck(int numPacks){
+      this.numPacks = numPacks;
+      topCard = numPacks * 52;
       
+      if(masterPack == null){
+         masterPack = new Card[52];
+         allocateMasterPack(); 
+      }
+      init(topCard);
    }
    
    private static void allocateMasterPack(){
@@ -57,9 +64,22 @@ public class Deck {
       }
    }
    
+   public void init(int numPacks){
+      cards = new Card[numPacks];
+
+      int j = 0;
+      for(int i = 0; i < numPacks; i++){
+         if (j >= masterPack.length){
+            j = 0;
+         }
+         cards[i] = new Card(masterPack[j]);
+         j++;
+      }
+   }
+   
    public void display(){
-      for (int i = 0; i < masterPack.length; i++){
-         System.out.println(masterPack[i].toString());
+      for (int i = 0; i < cards.length; i++){
+         System.out.println(cards[i].toString());
       }
    }
    
