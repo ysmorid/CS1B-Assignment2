@@ -77,6 +77,24 @@ public class Deck {
       }
    }
    
+   public Card dealCard(){
+      topCard--;
+      return cards[topCard];
+   }
+   
+   public int getTopCard(){
+      return topCard;
+   }
+   
+   public Card inspectCard(int k){
+      if (k >= topCard){
+         boolean error = true;
+         Card card = new Card(error);
+         return card;
+      }
+      return cards[k];
+   }
+   
    public void display(){
       for (int i = 0; i < cards.length; i++){
          System.out.println(cards[i].toString());
