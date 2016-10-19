@@ -10,6 +10,7 @@ public class GameBasics {
       Deck deck2 = new Deck(2);
       Deck deck3 = new Deck();
       Deck deck4;
+      Hand[] hands;
       
       deck1.display();
       System.out.println();
@@ -44,6 +45,24 @@ public class GameBasics {
       }
       
       deck4 = new Deck();
+      hands = new Hand[userInput];
       
+      for(int i = 0; i < userInput; i++){
+         Hand hand = new Hand();
+         hands[i] = hand;
+      }
+      
+      while(deck4.getTopCard() > 0){
+         for(int k = 0; k < userInput; k++){
+            if(deck4.getTopCard() > 0){
+               hands[k].takeCard(deck4.dealCard());
+            }
+         }
+      }
+      for (int i = 0; i < userInput; i++){
+         System.out.println("Hand: " + hands[i].toString());
+         System.out.println();
+      }
+     
    }
 }
