@@ -1,0 +1,175 @@
+package gameBasics;
+import java.util.*;
+
+public class GameBasics {
+
+   public static void main(String[] args) {
+
+      Deck deck;
+      Hand[] hands;
+      int userInput;
+      
+      System.out.println("------------------RUN 1----------------");
+      System.out.println();
+      
+      deck = new Deck(2);
+      display(deck);
+      deck = new Deck(2);
+      deck.shuffle();
+      display(deck);
+      
+      
+      deck = new Deck();
+      display(deck);
+      deck = new Deck();
+      deck.shuffle();
+      display(deck);
+      
+      System.out.println("------------------RUN 2----------------");
+      System.out.println();
+      
+      userInput = getNumHands();
+      deck = new Deck();
+      hands = setNumHands(userInput);
+      dealToHands(deck, hands, userInput);
+      display(userInput, hands);
+     
+      deck = new Deck();
+      deck.shuffle();
+      resetHands(hands, userInput);
+      dealToHands(deck, hands, userInput);
+      display(userInput, hands);
+   }
+   
+   public static int getNumHands(){
+      int input = 0;
+      Scanner keyboard = new Scanner(System.in);
+      boolean test = false;
+      
+      while(!test){
+         System.out.println("How many hands would you like to play? You can choose"
+               + " between 1 - 10:");
+         input = keyboard.nextInt();
+         if(input < 1 || input > 10){
+            System.out.println("I'm sorry, that is not a valid amount. Please try again.");
+         }
+         else{
+            test = true;
+            keyboard.close();
+         }   
+      }
+      return input;
+   }
+   
+   public static Hand[] setNumHands(int input){
+      Hand[] hands = new Hand[input];
+      
+      for(int i = 0; i < input; i++){
+         hands[i] = new Hand();
+      }
+      return hands;
+   }
+   
+   public static void dealToHands(Deck deck, Hand[] hand, int input){
+      while(deck.getTopCard() > 0){
+         for(int k = 0; k < input; k++){
+            if(deck.getTopCard() > 0){
+               hand[k].takeCard(deck.dealCard());
+            }
+         }
+      }
+   }
+   
+   public static void resetHands(Hand[] hands, int input){
+      for(int i = 0; i < input; i++){
+         hands[i].resetHand();
+      }
+   }
+   
+   public static void display (Deck deck){
+      for(int i = 0; i < deck.getTopCard(); i++){
+         System.out.print(deck.dealCard().toString());
+         if(i != deck.getTopCard() - 1){
+            System.out.print(", ");            
+         }
+      }
+      System.out.println();
+      System.out.println();
+   }
+   
+   public static void display(int input, Hand[] hand){
+      for (int i = 0; i < input; i++){
+         System.out.println("Hand: " + hand[i].toString());
+         System.out.println();
+      }
+   }
+   
+
+}
+
+------------------OUTPUT--------------------
+
+------------------RUN 1----------------
+
+K of SPADES, Q of SPADES, J of SPADES, T of SPADES, 9 of SPADES, 8 of SPADES, 7 
+of SPADES, 6 of SPADES, 5 of SPADES, 4 of SPADES, 3 of SPADES, 2 of SPADES, A of
+ SPADES, K of HEARTS, Q of HEARTS, J of HEARTS, T of HEARTS, 9 of HEARTS, 8 of H
+EARTS, 7 of HEARTS, 6 of HEARTS, 5 of HEARTS, 4 of HEARTS, 3 of HEARTS, 2 of HEA
+RTS, A of HEARTS, K of DIAMONDS, Q of DIAMONDS, J of DIAMONDS, T of DIAMONDS, 9 
+of DIAMONDS, 8 of DIAMONDS, 7 of DIAMONDS, 6 of DIAMONDS, 5 of DIAMONDS, 4 of DI
+AMONDS, 3 of DIAMONDS, 2 of DIAMONDS, A of DIAMONDS, K of CLUBS, Q of CLUBS, J o
+f CLUBS, T of CLUBS, 9 of CLUBS, 8 of CLUBS, 7 of CLUBS, 6 of CLUBS, 5 of CLUBS,
+ 4 of CLUBS, 3 of CLUBS, 2 of CLUBS, A of CLUBS
+
+Q of DIAMONDS, 7 of DIAMONDS, 2 of SPADES, 6 of DIAMONDS, 3 of SPADES, 4 of DIAM
+ONDS, T of CLUBS, K of DIAMONDS, J of CLUBS, T of SPADES, 9 of SPADES, 4 of HEAR
+TS, 7 of SPADES, 8 of DIAMONDS, 4 of SPADES, A of SPADES, Q of CLUBS, 7 of DIAMO
+NDS, 6 of HEARTS, Q of SPADES, 4 of HEARTS, 2 of SPADES, 5 of CLUBS, 8 of SPADES
+, 5 of HEARTS, J of CLUBS, A of SPADES, 9 of DIAMONDS, Q of CLUBS, K of SPADES, 
+3 of HEARTS, 7 of HEARTS, A of CLUBS, 6 of SPADES, T of HEARTS, 3 of HEARTS, 8 o
+f DIAMONDS, Q of SPADES, 8 of CLUBS, 9 of CLUBS, T of CLUBS, T of DIAMONDS, T of
+ HEARTS, 9 of CLUBS, 4 of DIAMONDS, Q of DIAMONDS, 9 of SPADES, 7 of HEARTS, 6 o
+f SPADES, 6 of CLUBS, 6 of HEARTS, J of SPADES
+
+K of SPADES, Q of SPADES, J of SPADES, T of SPADES, 9 of SPADES, 8 of SPADES, 7 
+of SPADES, 6 of SPADES, 5 of SPADES, 4 of SPADES, 3 of SPADES, 2 of SPADES, A of
+ SPADES, K of HEARTS, Q of HEARTS, J of HEARTS, T of HEARTS, 9 of HEARTS, 8 of H
+EARTS, 7 of HEARTS, 6 of HEARTS, 5 of HEARTS, 4 of HEARTS, 3 of HEARTS, 2 of HEA
+RTS, A of HEARTS
+
+2 of CLUBS, 8 of SPADES, A of HEARTS, 2 of HEARTS, 6 of CLUBS, 9 of DIAMONDS, 3 
+of DIAMONDS, 7 of HEARTS, 6 of SPADES, Q of CLUBS, T of HEARTS, 3 of SPADES, 3 o
+f HEARTS, K of HEARTS, 7 of SPADES, 9 of HEARTS, 2 of SPADES, A of SPADES, Q of 
+HEARTS, J of CLUBS, 5 of SPADES, K of SPADES, Q of SPADES, 6 of DIAMONDS, K of C
+LUBS, 4 of DIAMONDS
+
+------------------RUN 2----------------
+
+How many hands would you like to play? You can choose between 1 - 10:
+2
+Hand: K of SPADES, J of SPADES, 9 of SPADES, 7 of SPADES, 5 of SPADES, 3 of SPAD
+ES, A of SPADES, Q of HEARTS, T of HEARTS, 8 of HEARTS, 6 of HEARTS, 4 of HEARTS
+, 2 of HEARTS, K of DIAMONDS, J of DIAMONDS, 9 of DIAMONDS, 7 of DIAMONDS, 5 of 
+DIAMONDS, 3 of DIAMONDS, A of DIAMONDS, Q of CLUBS, T of CLUBS, 8 of CLUBS, 6 of
+ CLUBS, 4 of CLUBS, 2 of CLUBS
+
+Hand: Q of SPADES, T of SPADES, 8 of SPADES, 6 of SPADES, 4 of SPADES, 2 of SPAD
+ES, K of HEARTS, J of HEARTS, 9 of HEARTS, 7 of HEARTS, 5 of HEARTS, 3 of HEARTS
+, A of HEARTS, Q of DIAMONDS, T of DIAMONDS, 8 of DIAMONDS, 6 of DIAMONDS, 4 of 
+DIAMONDS, 2 of DIAMONDS, K of CLUBS, J of CLUBS, 9 of CLUBS, 7 of CLUBS, 5 of CL
+UBS, 3 of CLUBS, A of CLUBS
+
+Hand: null, null, null, null, null, null, null, null, null, null, null, null, nu
+ll, null, null, null, null, null, null, null, null, null, null, null, null, null
+, Q of HEARTS, Q of DIAMONDS, Q of CLUBS, J of HEARTS, 6 of DIAMONDS, 9 of CLUBS
+, 9 of SPADES, K of HEARTS, 7 of DIAMONDS, 6 of CLUBS, K of CLUBS, 3 of DIAMONDS
+, 2 of CLUBS, J of SPADES, 9 of DIAMONDS, 6 of SPADES, 7 of SPADES, 2 of DIAMOND
+S, K of SPADES, 3 of HEARTS, 7 of CLUBS, 4 of HEARTS, 3 of CLUBS, 4 of DIAMONDS
+
+Hand: null, null, null, null, null, null, null, null, null, null, null, null, nu
+ll, null, null, null, null, null, null, null, null, null, null, null, null, null
+, 7 of HEARTS, T of CLUBS, 5 of CLUBS, 8 of SPADES, T of DIAMONDS, A of HEARTS, 
+5 of SPADES, 8 of HEARTS, 5 of DIAMONDS, A of SPADES, T of SPADES, 4 of SPADES, 
+5 of HEARTS, A of CLUBS, 8 of CLUBS, 3 of SPADES, 4 of CLUBS, K of DIAMONDS, 8 o
+f DIAMONDS, T of HEARTS, Q of SPADES, J of DIAMONDS, 2 of SPADES, 6 of HEARTS
+
