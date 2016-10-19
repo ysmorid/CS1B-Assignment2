@@ -104,11 +104,4 @@ public class Deck {
       return cards[k];
    }
    
-   public void display(){
-      for (int i = 0; i < cards.length; i++){
-         System.out.print(cards[i].toString() + " // ");
-      }
-      System.out.println();
-   }
-   
 }
