@@ -10,9 +10,6 @@ public class GameBasics {
       Deck deck2 = new Deck(2);
       Deck deck3 = new Deck();
       Deck deck4;
-      Hand hands;
-      
-      int userInput = 0;
       
       deck1.display();
       System.out.println();
@@ -29,6 +26,7 @@ public class GameBasics {
       
       System.out.println("------------------RUN 2----------------");
       
+      int userInput = 0;
       Scanner keyboard = new Scanner(System.in);
       boolean test = false;
       
@@ -36,7 +34,6 @@ public class GameBasics {
          System.out.println("How many hands would you like to play? You can choose"
                + " between 1 - 10:");
          userInput = keyboard.nextInt();
-         
          if(userInput < 1 || userInput > 10){
             System.out.println("I'm sorry, that is not a valid amount. Please try again.");
          }
@@ -45,5 +42,8 @@ public class GameBasics {
             keyboard.close();
          }   
       }
+      
+      deck4 = new Deck();
+      
    }
 }
