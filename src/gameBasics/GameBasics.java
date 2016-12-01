@@ -34,9 +34,10 @@ public class GameBasics {
       dealToHands(deck, hands, userInput);
       display(userInput, hands);
      
+      System.out.println("Shuffle deck and re-deal cards:");
       deck = new Deck();
       deck.shuffle();
-      hands = setNumHands(userInput);
+      resetHands(hands);
       dealToHands(deck, hands, userInput);
       display(userInput, hands);
    }
@@ -65,8 +66,7 @@ public class GameBasics {
       Hand[] hands = new Hand[input];
       
       for(int i = 0; i < input; i++){
-         Hand hand = new Hand();
-         hands[i] = hand;
+         hands[i] = new Hand();
       }
       return hands;
    }
@@ -78,6 +78,12 @@ public class GameBasics {
                hand[k].takeCard(deck.dealCard());
             }
          }
+      }
+   }
+   
+   public static void resetHands(Hand[] hands){
+      for(int i = 0; i < hands.length; i++){
+         hands[i].resetHand();
       }
    }
    

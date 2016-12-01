@@ -12,6 +12,7 @@ public class Hand {
    
    public void resetHand(){
       myCards = new Card[MAX_CARDS];
+      numCards = 0;
    }
  
    public boolean takeCard(Card card){
